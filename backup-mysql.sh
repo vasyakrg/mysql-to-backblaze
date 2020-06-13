@@ -22,8 +22,6 @@ fi
 
 IFS=$'\r\n' command eval "BASES=($(mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e 'show databases;' -B))"
 
-echo ${BASES[*]}
-
 for BASE in ${BASES[*]}
   do
     if [ ${BASE} == "Database" ]; then
