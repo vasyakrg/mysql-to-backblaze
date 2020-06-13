@@ -26,6 +26,10 @@ echo ${BASES[*]}
 
 for BASE in ${BASES[*]}
   do
+    if [ ${BASE} == "Database" ]; then
+        continue
+    fi
+
     if [ ! -d ${BACKUP_DIR}/${BASE} ]; then
       mkdir -p ${BACKUP_DIR}/${BASE}
     fi
