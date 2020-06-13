@@ -6,22 +6,26 @@ source .env
 BACKUP_DIR="/var/backup_blaze/db"
 DATE=`date +%Y-%m-%d_%H%M`
 
-if [ ! -d ${BACKUP_DIR} ]; then
+if [[ ! -d ${BACKUP_DIR} ]]; then
     mkdir -p ${BACKUP_DIR}
 fi
 
-if [ ! -f .env ]; then
+if [[ ! -f .env ]]; then
     cp .env.example .env
+    exit 1
 fi
 
-if [ $(grep -r .env -e 'MYSQL_USER=') == '' ]; then
+if [[ $(grep -r .env -e 'MYSQL_USER=') == '' ]]; then
     echo "Put credentions to .env"
     exit 1
 fi
 
 IFS=$'\r\n' command eval "BASES=($(mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e 'show databases;' -B))"
 
-for BASES in ${BASES*]}
+echo ${BASES[*]}
+exit 0
+
+for BASES in ${BASES[*]}
   do
     if [ ! -d ${BACKUP_DIR}/${BASE} ]; then
       mkdir -p ${BACKUP_DIR}/${BASE}
