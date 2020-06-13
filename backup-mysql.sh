@@ -31,13 +31,13 @@ for BASE in ${BASES[*]}
     fi
     FILE=${BACKUP_DIR}/${BASE}/${BASE}_dump_${DATE}.sql.gz
     echo "<<< mysqlmump $FILE"
-    mysqldump --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --host=localhost --routines ${DBASE} | gzip -c > $FILE
+    mysqldump --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --host=localhost --routines ${BASE} | gzip -c > $FILE
   done
 
 find ${BACKUP_DIR}/ -type f -mtime +30 -delete
 
 
-[[ ${BACKUP_REMOTE } == "true" ]] &&
+[[ ${BACKUP_REMOTE} == "true" ]] &&
 for BASE in ${BASES[*]}
     do
         b2 sync ${DB_BACKUP_DIR}/${BASE} b2://hosting-amegaserver-com/${BASE}
