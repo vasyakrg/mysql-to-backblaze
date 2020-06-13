@@ -45,6 +45,6 @@ for BASE in ${BASES[*]}
         b2 sync ${DB_BACKUP_DIR}/${BASE} b2://hosting-amegaserver-com/${BASE}
     done
 
-echo ">>> backup end: $DATE"
+echo ">>> backup end: $DATE" >> ${DB_BACKUP_DIR}/log.out
 
 exit 0
