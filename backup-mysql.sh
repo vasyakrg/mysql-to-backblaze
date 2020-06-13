@@ -13,7 +13,7 @@ if [[ ! -f .env ]]; then
     exit 1
 fi
 
-source .env
+source $(cd "${BASH_SOURCE[0]%/*}" && pwd)/.env
 
 if [[ $(grep -r .env -e 'MYSQL_USER=') == '' ]]; then
     echo "Put credentions to .env"
