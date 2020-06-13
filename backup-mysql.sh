@@ -24,7 +24,7 @@ IFS=$'\r\n' command eval "BASES=($(mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e
 
 echo ${BASES[*]}
 
-for BASES in ${BASES[*]}
+for BASE in ${BASES[*]}
   do
     if [ ! -d ${BACKUP_DIR}/${BASE} ]; then
       mkdir -p ${BACKUP_DIR}/${BASE}
@@ -37,7 +37,7 @@ for BASES in ${BASES[*]}
 find ${BACKUP_DIR}/ -type f -mtime +30 -delete
 
 
-for BASES in ${BASES[*]}
+for BASE in ${BASES[*]}
     do
         b2 sync ${DB_BACKUP_DIR}/${BASE} b2://hosting-amegaserver-com/${BASE}
     done
