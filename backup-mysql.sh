@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source .env
-
 # Set env
 BACKUP_DIR="/var/backup_blaze/db"
 DATE=`date +%Y-%m-%d_%H%M`
@@ -14,6 +12,8 @@ if [[ ! -f .env ]]; then
     cp .env.example .env
     exit 1
 fi
+
+source .env
 
 if [[ $(grep -r .env -e 'MYSQL_USER=') == '' ]]; then
     echo "Put credentions to .env"
