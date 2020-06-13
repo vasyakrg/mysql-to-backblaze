@@ -37,6 +37,7 @@ for BASE in ${BASES[*]}
 find ${BACKUP_DIR}/ -type f -mtime +30 -delete
 
 
+[[ ${BACKUP_REMOTE } == "true" ]] &&
 for BASE in ${BASES[*]}
     do
         b2 sync ${DB_BACKUP_DIR}/${BASE} b2://hosting-amegaserver-com/${BASE}
