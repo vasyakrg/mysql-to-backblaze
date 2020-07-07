@@ -38,7 +38,7 @@ for BASE in ${BASES[*]}
     mysqldump --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --host=localhost --routines ${BASE} | gzip -c > $FILE
   done
 
-find ${BACKUP_DIR}/ -type f -mtime +30 -delete
+find ${BACKUP_DIR}/ -type f -mtime +${ROTATION} -delete
 
 
 [[ ${BACKUP_REMOTE} == "true" ]] &&
